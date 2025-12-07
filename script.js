@@ -1,32 +1,25 @@
-// Mobile nav toggle
-const navToggle = document.getElementById("navToggle");
-const mainNav = document.querySelector(".main-nav");
 
-if (navToggle && mainNav) {
-  navToggle.addEventListener("click", () => {
-    mainNav.classList.toggle("open");
+function scrollToPricing(){
+  document.getElementById("pricing").scrollIntoView({
+    behavior: "smooth"
   });
 }
 
-// Smooth scroll for internal links
-document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-  anchor.addEventListener("click", function (e) {
-    const targetId = this.getAttribute("href");
-    if (!targetId || targetId === "#") return;
+function openWhatsApp(){
+  const message = encodeURIComponent(
+    "Hi, I want to order ADAPT Journal."
+  );
+  window.open(
+    "https://wa.me/919754562626?text=" + message,
+    "_blank"
+  );
+}
 
-    const target = document.querySelector(targetId);
-    if (!target) return;
+function openPreview(img){
+  document.getElementById("previewImg").src = img.src;
+  document.getElementById("preview").style.display = "block";
+}
 
-    e.preventDefault();
-    target.scrollIntoView({ behavior: "smooth", block: "start" });
-
-    // close mobile nav after click
-    mainNav.classList.remove("open");
-  });
-});
-
-// Dynamic year
-const yearSpan = document.getElementById("year");
-if (yearSpan) {
-  yearSpan.textContent = new Date().getFullYear();
+function closePreview(){
+  document.getElementById("preview").style.display = "none";
 }
